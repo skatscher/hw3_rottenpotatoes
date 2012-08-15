@@ -34,3 +34,13 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
     end
   end
 end
+
+Then /I should see all of the movies/ do
+  rows = page.all('#movies tr').size - 1
+  assert rows == Movie.count
+end
+
+Then /I should not see any of the movies/ do
+  rows = page.all('#movies tr').size - 1
+  assert rows == 0
+end
